@@ -2,7 +2,6 @@
 
 **Author**: Phil Murphy
 
-
 ## Overview
 
 This app is supposed to I guess let you add some books to a favorites list. Eventually it'll store them in a DB and be able to be recalled later, perhaps
@@ -13,11 +12,15 @@ The only thing in my .env for now is PORT=
 
 ## Architecture
 
-[UML](uml_for_auth0.png)
+* [UML with Auth0](umls/uml_for_auth0.png)
+
+* [UML with Auth0 and Mongo](umls/uml-auth0-mongo.png)
 
 ## Change Log
 
-First iteration, no real changes just yet
+* 1.0 - [First iteration, no real changes just yet](https://github.com/phmurphy212/can-of-books-frontend/pull/2)
+
+* 1.1 - [Iteration 2, got some preseeded books and mongo db!](https://github.com/phmurphy212/can-of-books-frontend/pull/3)
 
 ## Credit and Collaborations
 
@@ -36,3 +39,15 @@ Start time: 2:45
 Finish time: 6:00
 
 Actual time needed to complete: 3:15
+
+____________________________
+
+Name of feature: Lab 12
+
+Estimate of time needed to complete: 4 hours
+
+Start time: 8.17 8:45
+
+Finish time: 8.18 9:30
+
+Actual time needed to complete: 3:45

@@ -1,5 +1,4 @@
 import React from 'react';
-import Books from './Books';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BestBooks.css';
 // import BootForm from './BookForm';
@@ -33,8 +32,8 @@ class MyFavoriteBooks extends React.Component {
     this.setState({
       books: results.data
     })
-    console.log(`should be books: ${results.data}`);
-    console.log(`👋🏼did we get ${this.state.books}?`);
+    console.log(`should be books: ${results}`);
+    console.log(`👋🏼did we get BOOKS?`);
 
   }
 
@@ -96,9 +95,33 @@ class MyFavoriteBooks extends React.Component {
             </Carousel>
           </Col>
         </Row>
-        <Books 
-        books={this.state.books}
-        handleDelete = {this.handleDelete}/>
+        <Row>
+          <Col>
+            <Table striped bordered hover>
+              {this.state.books.map((book, index) => book.title ?
+                <>
+                  <thead>
+                    <tr key={index}>
+                      <th>Title</th>
+                      <th>Status</th>
+                      <th>Desciption</th>
+                      <th>Remove</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{book.title}</td>
+                      <td>{book.status}</td>
+                      <td>{book.description}</td>
+                      <td><button onClick={this.handleDelete(book._id)}>Remove</button> 
+                      </td>
+                    </tr>
+                  </tbody>
+                </>
+                    : '')}
+            </Table>
+          </Col>
+        </Row>
       </Container>
     )
   }

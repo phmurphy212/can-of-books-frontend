@@ -6,6 +6,7 @@ import Login from './Login';
 
 import Footer from './Footer';
 import BestBooks from './BestBooks';
+// import BookForm from './BookForm';
 
 
 import { withAuth0 } from '@auth0/auth0-react';
@@ -17,6 +18,13 @@ import {
 } from "react-router-dom";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+    }
+  }
+
   render() {
     const { user, isAuthenticated, isLoading } = this.props.auth0;
 
@@ -29,7 +37,7 @@ class App extends React.Component {
         <>
           <Router>
             <IsLoadingAndError>
-              <Header isAuthenticated = {
+              <Header isAuthenticated={
                 isAuthenticated
               } />
               <Switch>
@@ -37,12 +45,12 @@ class App extends React.Component {
                   {isAuthenticated ? <BestBooks /> : <Login />}
                 </Route>
                 <Route exact path="/profile">
-                {isAuthenticated ? <Profile /> : <Login />}
+                  {isAuthenticated ? <Profile /> : <Login />}
                 </Route>
               </Switch>
-              <Footer />
             </IsLoadingAndError>
           </Router>
+          <Footer />
         </>
       )
     }

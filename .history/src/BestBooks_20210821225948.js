@@ -96,9 +96,34 @@ class MyFavoriteBooks extends React.Component {
             </Carousel>
           </Col>
         </Row>
-        <Books 
-        books={this.state.books}
-        handleDelete = {this.handleDelete}/>
+        <Row>
+          <Col>
+            <Table striped bordered hover>
+              <>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Desciption</th>
+                    <th>Remove</th>
+                  </tr>
+                </thead>
+                {this.state.books.map((book, index) => book ?
+                  <tbody>
+                    <tr>
+                      <td>{book.title}</td>
+                      <td>{book.status}</td>
+                      <td>{book.description}</td>
+                      <td><button onClick={this.handleDelete(book._id)}>Remove</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                  : '')}
+              </>
+            </Table>
+          </Col>
+        </Row>
+        <Books books={this.state.books}/>
       </Container>
     )
   }

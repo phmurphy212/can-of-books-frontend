@@ -1,5 +1,4 @@
 import React from 'react';
-import Books from './Books';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BestBooks.css';
 // import BootForm from './BookForm';
@@ -33,9 +32,7 @@ class MyFavoriteBooks extends React.Component {
     this.setState({
       books: results.data
     })
-    console.log(`should be books: ${results.data}`);
-    console.log(`👋🏼did we get ${this.state.books}?`);
-
+    console.log(`should be books: ${results}`);
   }
 
   handleCreate = async (bookData) => {
@@ -45,30 +42,13 @@ class MyFavoriteBooks extends React.Component {
       this.setState({
         books: [...this.state.books, newBook],
       })
-      console.log(`did we get CREATE?`);
-
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3001/books/${id}`);
-      console.log(`book is id${id}`);
-      let remainingBooks = this.state.books.filter(book => book._id !== id);
-      this.setState({
-        books: remainingBooks,
-      });
-      console.log(`did we get DELETE?`);
-
     } catch (error) {
       console.log(error);
     }
   }
 
   render() {
-    // console.log(this.state.books);
+    console.log(this.state.books);
     return (
       <Container>
         <Row>
@@ -87,7 +67,7 @@ class MyFavoriteBooks extends React.Component {
           <Col>
             <Carousel variant="dark">
               {this.state.books.map((book, index) => book.title ?
-                <Carousel.Item key={index}>
+                <Carousel.Item key={book._id}>
                   <h3>{book.title}</h3>
                   <h4>{book.status}</h4>
                   <p>{book.description}</p>
@@ -96,9 +76,33 @@ class MyFavoriteBooks extends React.Component {
             </Carousel>
           </Col>
         </Row>
-        <Books 
-        books={this.state.books}
-        handleDelete = {this.handleDelete}/>
+        <Row>
+          <Col>
+            <Table striped bordered hover>
+              {this.state.books.map((book, index) => book.title ?
+                <>
+                  <thead>
+                    <tr key={book._id}>
+                      <th>Title</th>
+                      <th>Status</th>
+                      <th>Desciption</th>
+                      <th>Remove</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{book.title}</td>
+                      <td>{book.status}</td>
+                      <td>{book.description}</td>
+                      <td><button>Remove</button> 
+                      </td>
+                    </tr>
+                  </tbody>
+                </>
+                    : '')}
+            </Table>
+          </Col>
+        </Row>
       </Container>
     )
   }

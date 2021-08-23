@@ -1,0 +1,19 @@
+.bookCarousel {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 15px;
+  background-color: #343A40;
+  align-items: center;
+  color: white;
+}
+
+.deleteButton {
+  margin-bottom: 50px;
+}
+
+#carouselP {
+  margin: 25px;
+  width: 80%;
+  align-items: center;
+  text-align: center;
+
+}

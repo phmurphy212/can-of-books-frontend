@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
-import Modal from 'react-bootstrap/Modal';
+// import Modal from 'react-bootstrap/Modal';
 
 class Books extends React.Component {
   constructor(props) {
@@ -25,13 +25,13 @@ class Books extends React.Component {
   }
 
   handleShow = (book) => {
+    console.log('I am here:', book);
     this.setState({
       showModal: true,
       selectedBook: book
     });
   }
   render() {
-    console.log(this.state.selectedBook);
     return (
       <Container fluid>
         <Row>
@@ -47,19 +47,13 @@ class Books extends React.Component {
                   <Button className="deleteButton" onClick={() => this.props.handleDelete(book._id)}>Remove</Button>
                 </Carousel.Item>
                 : '')}
-              {this.state.selectedBook ?
-                <Modal show={this.state.showModal} onHide={this.handleClose}>
-                  <Modal.Header closeButton>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <BookFormUpdateModal
-                      handleUpdate={this.props.handleUpdate}
-                      selectedBook={this.state.selectedBook}
-                      handleClose={this.handleClose}
-                    />
-                  </Modal.Body>
-                </Modal>
-                : ''}
+                {this.state.showModal ? <BookFormUpdateModal 
+                  selectedBook = {this.state.selectedBook}
+                  handleShow = {this.handleShow}
+                  handleClose = {this.handleClose}
+                  showModal = {this.state.showModal}
+                  handleUpdate = {this.props.handleUpdate}
+                  /> : '' }
             </Carousel>
           </Col>
         </Row>

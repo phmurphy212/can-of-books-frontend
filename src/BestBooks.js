@@ -1,7 +1,7 @@
 import React from 'react';
 import Books from './Books';
 import BookFormModal from './BookFormModal';
-import BookFormUpdateModal from './BookFormUpdateModal';
+// import BookFormUpdateModal from './BookFormUpdateModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BestBooks.css';
 
@@ -111,10 +111,8 @@ class MyFavoriteBooks extends React.Component {
           handleCreate={this.handleCreate}
           hideModal={this.hideModal}
           showModal={this.state.showModal}
+          renderModal={this.renderModal}
           email={this.props.auth0.user.email}
-        />
-        <BookFormUpdateModal
-          handleCreate={this.handleCreate}
           handleUpdate={this.handleUpdate}
         />
       </Container >

@@ -1,7 +1,6 @@
 import React from 'react';
 import Books from './Books';
 import BookFormModal from './BookFormModal';
-import BookFormUpdateModal from './BookFormUpdateModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './BestBooks.css';
 
@@ -20,6 +19,7 @@ class MyFavoriteBooks extends React.Component {
     this.state = {
       books: [],
       showModal: false,
+      selectedBook: null
     }
   }
 
@@ -74,22 +74,6 @@ class MyFavoriteBooks extends React.Component {
     }
   }
 
-  handleUpdate = async (book) => {
-    console.log('updated books:', book);
-    await axios.put(`http://localhost:3001/books/${book._id}`, book);
-
-    const updateBooks = this.state.books.map(stateBook => {
-      if (stateBook._id === book._id) {
-        return book;
-      } else {
-        return stateBook;
-      }
-    });
-    this.setState({
-      books: updateBooks,
-    })
-  }
-
   render() {
     return (
       <Container fluid>
@@ -102,9 +86,7 @@ class MyFavoriteBooks extends React.Component {
         <Row>
           <Books
             books={this.state.books}
-            handleDelete={this.handleDelete} 
-            handleUpdate={this.handleUpdate}
-            />
+            handleDelete={this.handleDelete} />
         </Row>
         <BookFormModal
           books={this.state.books}
@@ -112,10 +94,6 @@ class MyFavoriteBooks extends React.Component {
           hideModal={this.hideModal}
           showModal={this.state.showModal}
           email={this.props.auth0.user.email}
-        />
-        <BookFormUpdateModal
-          handleCreate={this.handleCreate}
-          handleUpdate={this.handleUpdate}
         />
       </Container >
     )

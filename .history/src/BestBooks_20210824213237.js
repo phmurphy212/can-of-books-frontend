@@ -114,7 +114,10 @@ class MyFavoriteBooks extends React.Component {
           email={this.props.auth0.user.email}
         />
         <BookFormUpdateModal
+          books={this.state.books}
           handleCreate={this.handleCreate}
+          hideModal={this.hideModal}
+          showModal={this.renderModal}
           handleUpdate={this.handleUpdate}
         />
       </Container >

@@ -3,7 +3,7 @@ import { Form, Button, Modal } from 'react-bootstrap';
 import { withAuth0 } from '@auth0/auth0-react';
 
 
-class BookFormModal extends React.Component {
+class BookFormUpdateModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,10 +27,10 @@ class BookFormModal extends React.Component {
   render() {
     return (
       <>
-        <Modal show={this.props.showModal} onHide={this.props.hideModal}>
+        <Modal onHide={this.props.hideModal}>
           <Modal.Dialog>
             <Modal.Header closeButton>
-              <Modal.Title>Add a Book</Modal.Title>
+              <Modal.Title>Update Book</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
@@ -54,7 +54,7 @@ class BookFormModal extends React.Component {
                   </Form.Control>
                 </Form.Group>
                 <Button type="submit">
-                  Add Book
+                  Update Book
                 </Button>
               </Form>
             </Modal.Body>
@@ -70,4 +70,4 @@ class BookFormModal extends React.Component {
     );
   }
 }
-export default withAuth0(BookFormModal);
+export default withAuth0(BookFormUpdateModal);

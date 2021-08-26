@@ -114,6 +114,7 @@ class MyFavoriteBooks extends React.Component {
           email={this.props.auth0.user.email}
         />
         <BookFormUpdateModal
+          books={this.state.books}
           handleCreate={this.handleCreate}
           handleUpdate={this.handleUpdate}
         />

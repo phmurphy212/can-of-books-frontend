@@ -20,6 +20,7 @@ class MyFavoriteBooks extends React.Component {
     this.state = {
       books: [],
       showModal: false,
+      selectedBook: null
     }
   }
 
@@ -75,7 +76,7 @@ class MyFavoriteBooks extends React.Component {
   }
 
   handleUpdate = async (book) => {
-    console.log('updated books:', book);
+    console.log(`updated books: ${book}`);
     await axios.put(`http://localhost:3001/books/${book._id}`, book);
 
     const updateBooks = this.state.books.map(stateBook => {
@@ -102,9 +103,7 @@ class MyFavoriteBooks extends React.Component {
         <Row>
           <Books
             books={this.state.books}
-            handleDelete={this.handleDelete} 
-            handleUpdate={this.handleUpdate}
-            />
+            handleDelete={this.handleDelete} />
         </Row>
         <BookFormModal
           books={this.state.books}
@@ -114,7 +113,10 @@ class MyFavoriteBooks extends React.Component {
           email={this.props.auth0.user.email}
         />
         <BookFormUpdateModal
+          books={this.state.books}
           handleCreate={this.handleCreate}
+          hideModal={this.hideModal}
+          showModal={this.renderModal}
           handleUpdate={this.handleUpdate}
         />
       </Container >

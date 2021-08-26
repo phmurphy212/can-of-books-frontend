@@ -31,7 +31,6 @@ class Books extends React.Component {
     });
   }
   render() {
-    console.log(this.state.selectedBook);
     return (
       <Container fluid>
         <Row>
@@ -47,19 +46,17 @@ class Books extends React.Component {
                   <Button className="deleteButton" onClick={() => this.props.handleDelete(book._id)}>Remove</Button>
                 </Carousel.Item>
                 : '')}
-              {this.state.selectedBook ?
-                <Modal show={this.state.showModal} onHide={this.handleClose}>
-                  <Modal.Header closeButton>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <BookFormUpdateModal
-                      handleUpdate={this.props.handleUpdate}
-                      selectedBook={this.state.selectedBook}
-                      handleClose={this.handleClose}
-                    />
-                  </Modal.Body>
-                </Modal>
-                : ''}
+              <Modal show={this.state.showModal} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                </Modal.Header>
+                <Modal.Body>
+                  <BookFormUpdateModal
+                    handleUpdate={this.props.handleUpdate}
+                    selectedBook={this.state.selectedBook}
+                    handleClose={this.handleClose}
+                  />
+                </Modal.Body>
+              </Modal>
             </Carousel>
           </Col>
         </Row>
